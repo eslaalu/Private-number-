@@ -1,0 +1,32 @@
+```
+import requests
+
+def is_private_number(phone_number):
+    # Replace with API keys or modify for specific services
+    whitepages_api_key = "YOUR_API_KEY"
+    truecaller_api_key = "YOUR_API_KEY"
+
+    # Whitepages Search
+    response = requests.get(f"https://api.whitepages.com/v3/phone?phone={phone_number}&api_key={whitepages_api_key}")
+    if response.json()["results"]:
+        return False
+
+    # Truecaller Search
+    response = requests.get(f"https://api.truecaller.com/v2/phone/{phone_number}?api_key={truecaller_api_key}")
+    if response.json()["status"] == "FOUND":
+        return False
+
+    # Social Media Search (Facebook Example)
+    response = requests.get(f"https://graph.facebook.com/{phone_number}?fields=name&access_token=YOUR_ACCESS_TOKEN")
+    if response.json().get("name"):
+        return False
+
+    return True
+
+# Example usage:
+phone_number = "+1234567890"
+if is_private_number(phone_number):
+    print(f"{phone_number} is likely a private number.")
+else:
+    print(f"{phone_number} is not a private number.")
+```
