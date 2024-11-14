@@ -1,0 +1,14 @@
+```
+def is_palindrome(s):
+    """
+    Returns True if the input string is a palindrome, False otherwise.
+    """
+    return s == s[::-1]
+
+# Example usage:
+input_string = "radar"
+if is_palindrome(input_string):
+    print(f"'{input_string}' is a palindrome.")
+else:
+    print(f"'{input_string}' is not a palindrome.")
+```
